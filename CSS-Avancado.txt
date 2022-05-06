@@ -1,0 +1,1412 @@
+
+PSEUDO ELEMENTOS:
+
+
+
+HTML:
+
+
+<body>
+
+	<h1>Título</h1>
+	<p> Um texto qualquer.Um texto qualquer.Um texto qualquer.Um texto qualquer.Um texto qualquer.Um texto qualquer.Um texto qualquer.Um texto qualquer.Um texto qualquer. </p>
+
+	<ul>
+		<li>Item 1</li>
+		<li>Item 2</li>
+		<li>Item 3</li>
+		<li>Item 4</li>
+		<li>Item 5</li>
+	</ul>
+
+</body>
+
+
+
+
+JAVASCRIPT:
+
+
+/* para estilizar a primeira linha */
+
+p::first-line{
+	color: red;
+}
+
+
+/* para estilizar apenas a primeira letra */
+
+h1::first-letter{
+	color: red;
+	font-size: 5rem;
+}
+
+/* para estilizar colocando algo antes do conteudo do elemento,ex: colocar uma imagem antes do elemento li */
+
+li{
+	list-style: none;
+}
+
+li::before{
+	content: '';
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background-image: url(./download.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+
+/* para estilizar colocando algo depois do conteudo do elemento,ex: colocar uma imagem antes do elemento li */
+
+li{
+	list-style: none;
+}
+
+li::before{
+	content: '';
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background-image: url(./download.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+
+/* para estilizar quando voce selecionar o texto */
+
+p::selection {
+	background-color: yellow;
+	color: orangered;
+}
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+SELETORES
+
+nos ja sabemos alguns seletores,exemplo
+-> pela tag usando o nome da tag: p{}
+
+-> pelo id usando #nomeId -> #campo{}
+
+-> pela class usando .nomeClass -> .campo{}
+
+
+/* VAMOS VER OUTROS TIPOS DE SELETORES */
+
+HTML:
+
+<div>
+
+	<h1 title="titulo 1" width=300>Titulo 1</h1>
+	<h2 title="titulo 2">Titulo 2</h2>
+	<h3>Titulo 3</h3>
+	<h4 width=500>Titulo 4</h4>
+	<h5 title="texto 1">Titulo 5</h5>
+	<h6>Titulo 6</h6>
+
+</div>
+
+<p>Parágrafo Extra</p>
+
+<header id="head">
+
+	<p>Parágrafo 1</p>
+	<p class="p2">Parágrafo 2</p>
+	<p>Parágrafo 3</p>
+	<section>
+		<p>Parágrafo 4</p>
+		<p>Parágrafo 5</p>
+		<p>Parágrafo 6</p>
+	</section>
+
+</header>
+
+<p>Parágrafo Extra</p>
+<p>Parágrafo Extra</p>
+<p>Parágrafo Extra</p>
+
+<header>
+
+	<p>Parágrafo 1</p>
+	<p class="p2">Parágrafo 2</p>
+	<p>Parágrafo 3</p>
+	<p>Parágrafo 4</p>
+	<p>Parágrafo 5</p>
+	<p>Parágrafo 6</p>
+
+</header>
+
+<p>Parágrafo Extra</p>
+
+<div>
+
+	<p>Parágrafo 1</p>
+	<p>Parágrafo 2</p>
+	<p>Parágrafo 3</p>
+	<p>Parágrafo 4</p>
+	<p>Parágrafo 5</p>
+	<p>Parágrafo 6</p>
+
+</div>
+
+<p>Parágrafo Extra</p>
+
+
+
+CSS:
+/* VAMOS VER OUTROS TIPOS DE SELETORES */
+
+para selecionar todos os elementos, use: *{}
+
+selecionar mais de um elemento, use: .p2,header,h2{}
+
+selecionar elementos que estao dentro de outro elemento, use: #head p{}
+	-> seleciona o 'p' msm que esta dentro de um filho de #head
+
+pegar todos os elementos "p" cujo o pai tem que ser diretamente "#head", use: #head > p{}
+	-> os elementos que estao dentro de section nao seram mexidos pq n tem o head como pai direto e sim o section como pai direto
+
+
+pegar o elemento que esta logo apos(logo depois) do nosso header, use: header + p{}
+	-> se tiver dois elementos 'p' apos o header ele apenas ira pegar o primeiro
+
+vai pegar todos os elementos 'p' que sucedam o header, use: header ~ p{}
+	-> vai pegar todos os 'p' que estao depois do header msm que tenha algo no meio deles dois, ele ira pegar todos que veem dps independente se tiver uma outra tag antes do p 
+
+vai pegar os elementos que contem o atributo que voce definir, use: [width]{}	
+
+vai pegar os elementos que contem o atributo e o valor, use: [width="500"]{}
+
+vai pegar os elementos que contem o atributo com o valor igual a palabra que a gente pesquisar, use: [title~="titulo"]{}
+
+vai pegar todos os title que começarem com a letra "t", use: [title^="t"]{}
+
+vai pegar todos title que terminem com "1", use: [title$="1"]{}
+
+vai pegar todos os titles que estiverem o valor em alguma parte o que a gente pesquisar, use: [title*="tu"]{}
+
+
+
+
+JAVASCRIPT:
+
+/* podemos pegar os elementos com o javascript usando os mesmos tipos de seletores */
+
+<script>
+
+	let titulos = document.querySelectorAll("[title*=tu]")
+
+	console.log(titulos)
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+PSEUDO CLASSES
+
+
+HTML:
+
+<body>
+
+	<input type="text">
+	<input type="text">
+
+	<ul>
+		<h1>Lista<h1>
+		<li>Item 1</li>
+		<li>Item 2</li>
+		<li>Item 3</li>
+		<li>Item 4</li>
+		<li>Item 5</li>
+	</ul>
+
+	<ul>
+		<li>Item 6</li>
+		<li>Item 7</li>
+		<li>Item 8</li>
+		<li>Item 9</li>
+		<li>Item 10</li>
+	</ul>
+
+</body>
+
+
+
+
+CSS:
+/* AS PSEUDOS CLASSES SAO ESTILOS DE SELETORES,conseguimos selecionar algum elemmento com base em alguma caracteristica dele,que n seja sua class, seu id ou sua propria tag, o estado por exemplo vai ser utilizado para selecionar o nosso elemento */
+
+->por apenas o input que esta em foco com o texto vermelho,use
+	input:focus{color:red;}
+
+
+->para apenas o nosso primeiro elemento ficar azul,caso esse elemento seja um li se n for n sera estilizado, use:
+	li:first-child{color:blue;}
+
+->para pegar o nosso primeiro elemento li e estilizar ele, use:
+	li:first-of-type{color:blue;}
+
+->para escolhermos qual elemento que vamos pegar,vamos pegar o segundo elemento,use:
+	li:nth-child(2){color:blue;}
+
+->para pegar o nosso segundo elemento li, use:
+	li:nth-of-type(2){color:blue;}
+
+->vai pegar o segundo elemento de tras pra frente, use:
+	li:nth-last-child(2){color:blue;}
+
+->vai pegar o ultimo elemento, use:
+	li:last-child{}
+
+->vai pegar o ultimo elemento li, use:
+	li:last-of-type{}
+
+->pegar todos os elementos que sejam divisiveis por 2,ou seja pares, use:
+	li:nth-of-type(2n){color:blue;}
+
+->pegar todos os elementos impares, use:
+	li:nth-of-type(odd){color:blue;}
+
+->pegar todos os elementos pares, use:
+	li:nth-of-type(even){color:blue;}
+
+->editar de tres em tres comecando pelo primeiro, use:
+	li:nth-of-type(3n - 2){background-color: beige;}
+
+
+
+
+
+All CSS Pseudo Classes
+Selector	Example	Example description
+:active	a:active	Selects the active link
+:checked	input:checked	Selects every checked <input> element
+:disabled	input:disabled	Selects every disabled <input> element
+:empty	p:empty	Selects every <p> element that has no children
+:enabled	input:enabled	Selects every enabled <input> element
+:first-child	p:first-child	Selects every <p> elements that is the first child of its parent
+:first-of-type	p:first-of-type	Selects every <p> element that is the first <p> element of its parent
+:focus	input:focus	Selects the <input> element that has focus
+:hover	a:hover	Selects links on mouse over
+:in-range	input:in-range	Selects <input> elements with a value within a specified range
+:invalid	input:invalid	Selects all <input> elements with an invalid value
+:lang(language)	p:lang(it)	Selects every <p> element with a lang attribute value starting with "it"
+:last-child	p:last-child	Selects every <p> elements that is the last child of its parent
+:last-of-type	p:last-of-type	Selects every <p> element that is the last <p> element of its parent
+:link	a:link	Selects all unvisited links
+:not(selector)	:not(p)	Selects every element that is not a <p> element
+:nth-child(n)	p:nth-child(2)	Selects every <p> element that is the second child of its parent
+:nth-last-child(n)	p:nth-last-child(2)	Selects every <p> element that is the second child of its parent, counting from the last child
+:nth-last-of-type(n)	p:nth-last-of-type(2)	Selects every <p> element that is the second <p> element of its parent, counting from the last child
+:nth-of-type(n)	p:nth-of-type(2)	Selects every <p> element that is the second <p> element of its parent
+:only-of-type	p:only-of-type	Selects every <p> element that is the only <p> element of its parent
+:only-child	p:only-child	Selects every <p> element that is the only child of its parent
+:optional	input:optional	Selects <input> elements with no "required" attribute
+:out-of-range	input:out-of-range	Selects <input> elements with a value outside a specified range
+:read-only	input:read-only	Selects <input> elements with a "readonly" attribute specified
+:read-write	input:read-write	Selects <input> elements with no "readonly" attribute
+:required	input:required	Selects <input> elements with a "required" attribute specified
+:root	root	Selects the document's root element
+:target	#news:target	Selects the current active #news element (clicked on a URL containing that anchor name)
+:valid	input:valid	Selects all <input> elements with a valid value
+:visited	a:visited	Selects all visited links
+All CSS Pseudo Elements
+Selector	Example	Example description
+::after	p::after	Insert content after every <p> element
+::before	p::before	Insert content before every <p> element
+::first-letter	p::first-letter	Selects the first letter of every <p> element
+::first-line	p::first-line	Selects the first line of every <p> element
+::selection	p::selection	Selects the portion of an element that is selected by a user
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FUNCAO CALC CSS
+
+usando o calc vc pode definir um espaçamento fixo para algo por exemplo.
+
+
+
+HTML:
+
+<body>
+
+	<div class="container">
+
+		<div class="primeira"></div>
+		<div class="segunda"></div>
+
+	</div>
+
+
+
+</body>
+
+
+
+CSS:
+
+bodu{
+	margin:0;
+	padding:0;
+	background-color: red;
+}
+
+.primeira{
+	width: calc(100% - 200px);
+	height: 100px;
+	background-color: blue;
+	margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+TRANSFORMAÇÕES
+
+/* transformações sao coisas que a gente pode modificar no nosso elemento  na nossa tela */
+/* vamos por rodar a imagem, mudar ela de lugar, escitar ela, esticar as pontas e etc */
+
+	
+HTML:
+
+	<div></div>
+
+
+
+
+CSS:
+
+div{
+	width: 420px;
+	height: 300px;
+	background-color: red;
+	transform: rotate(-45Deg); // rotaciona 45 graus antihorario
+}
+
+Temos tmb:
+	transform: scale() // vamos consegui rmodificar a escala tanto nna horizontal quanto na vertical, 
+	->scale(2) //dobra o tamanho da img
+	->scale(0.5,1) //0.5 para horizontal e 1 para vertical 
+	
+
+
+para pucar os cantos do elemento
+	transform: skew(45deg)
+	transform: skew(-45deg, 30deg) // -45º horizontal e 30º vertical 
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+Compatibilidade de navegadores
+
+
+tome cuidado para seus codigos serem compativeis com todos os navegadores 
+sites para isso:	https://caniuse.com
+				shouldiprefix.com
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+VARIÁVEIS EM CSS
+
+
+HTML:
+
+<body>
+
+	<h2 class="h">Titulo 1</h2>
+	<p class="p1">Paragrafo 1</p>
+	<p class="p2">Paragrafo 2</p>
+	<p class="p3">Paragrafo 3</p>
+	<p class="p4">Paragrafo 4</p>
+	<p class="p5">Paragrafo 5</p>
+
+	
+	<div class="sqr1"></div>
+	<div class="sqr2"></div>
+
+
+</body>
+
+
+
+
+CSS:
+
+:root{
+	--var-color: gray;
+
+	--square-size: 300px;
+}
+
+.p2{
+	color: var(--var-color);
+	font-size: 25px;
+}
+
+.p3{
+	color: var(--var-color);
+	font-size: 14px;
+}
+
+.sqr1{
+	width: var(--square-size);
+	height: var(--square-size);
+	background-color: black;
+}
+
+.sqr1{
+	width: var(--square-size);
+	height: var(--square-size);
+	background-color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - FLEX DIRECTION
+
+
+FlexBox - Como o proprio nome diz seria uma caixa flexivel,isso quer dizer que a egnte vai conseguir fazer com q nossos elementos eles sejam flexiveis o bastante para se adaptar ao elemento pai deles, e na pratica a gente esta falando de criar um designer se seja flexivel para qualquer tamanho de tela
+
+HTML:
+
+<div>
+	<div class="rect r1">1</div>
+	<div class="rect r2">2</div>
+	<div class="rect r3">3</div>	
+</div>
+
+
+
+
+CSS:
+
+.container{
+	display: flex;
+	flex-direction: row; //deixa em fileira
+	/* temos tmb:
+	flex-direction: column; //deixa em colunas horizontais
+	flex-direction: column-reverse; // deixa a fileira comecando de baixo para cima
+	flex-direction: row-reverse; // deixa a coluna horizontal da direita para esquerda
+	*/
+
+	background-color: darkgrey;
+	height: 400px;
+	color: white;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+width: 100px;
+height: 100px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - WRAP
+
+
+
+WRAP - propriedade do flex box
+flex-wrap: wrap; - vai preservar o tamanho do nosso elemento
+flex-wrap: wrap-reverse; - inverte as linhas de baixo pra cima
+flex-wrap: nowrap; - opcao padrao que vai se adaptar ao tamanho do elemento pai
+
+
+CSS:
+
+.container{
+	display: flex;
+	flex-direction: row; 
+	flex-wrap: wrap;
+
+	background-color: darkgrey;
+	height: 400px;
+	color: white;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+width: 150px;
+height: 150px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - FLEX FLOW
+
+
+tem como pegarmos duas propriedades e juntarmos em uma linha só,essas duas são: 'flex-direction: column;' e 'flex-wrap: wrap;' e podem ficar juntas usando 'flex-flow: ;',veja:
+flex-flow: column-reverse wrap-reverse;
+
+
+CSS:
+
+.container{
+	display: flex;
+	flex-flow: column-reverse wrap-reverse; 
+
+	background-color: darkgrey;
+	height: 400px;
+	color: white;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+width: 150px;
+height: 150px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - JUSTIFY CONTENT + ALIGN ITEMS
+
+
+vamos brincar um pouco mais com os posicionamentos dos elementos dentro do nosso elemento pai
+
+-> temos uma documentacao feita so para isso, entao veja em um repositorio nosso no github
+
+
+
+CSS:
+
+.container{
+	display: flex;
+	flex-wrap: wrap-reverse;
+	justify-content: space-between;
+	align-items: flex-end;
+
+	background-color: darkgrey;
+	height: 400px;
+	color: white;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+width: 150px;
+height: 150px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - ALIGN CONTENT
+
+
+
+CSS:
+
+.container{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	/* align-items: center; */
+	align-content: space-around;
+
+
+	background-color: darkgrey;
+	height: 290px;
+	color: white;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+width: 150px;
+height: 100px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - GROW/SHRINK
+
+
+vamos tornar as coisas de fato flexiveis, vamos usar o flex box nos elementos filhos
+
+para n deixar o elemento filho encolher,use: flex-shrink: 0:
+	-> 0 = n encolher  , 1 = para encolher
+
+para deixar o elemento aumentar e diminuir conforme o tamanho do pai,sempre preenchendo todo o espaco,use: flex-grow: 1;
+	-> 0 = n deixa esticar  , 1 = deixa esticar
+
+
+
+CSS:
+
+.container{
+	display: flex;
+
+	background-color: darkgrey;
+	height: 290px;
+	color: white;
+}
+
+.r1{
+	flex-grow: 1;
+	background-color: red;
+}
+
+.r2{
+	flex-grow: 2;
+	background-color: blue;
+}
+
+.r3{
+	flex-grow: 3;
+	background-color: green;
+}
+
+.rect{
+
+	/* height: 100px; */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - ORDEM
+
+
+uma propriedade que permite com q a gente mude a ordem dos nossos elementos sem mexer no HTML so atraves do CSS.ela so funciona se tivermos usando o display flex no nosso elemento pai, é o 'order'
+o padrao é que eles tenham por padraoa ordem 0,vai do menor pro maior
+
+
+
+
+CSS:
+
+.container{
+	display: flex;
+
+	background-color: darkgrey;
+	height: 290px;
+	color: white;
+}
+
+.r1{
+	order: 3;
+	background-color: red;
+}
+
+.r2{
+	order: 1;
+	background-color: blue;
+}
+
+.r3{
+	order: 2;
+	background-color: green;
+}
+
+.rect{
+
+	width: 150px;
+	height: 150px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+FLEXBOX - ALIGN SELF
+
+
+vamos aprender como q a gente pode usar o align em apenas um dos elementos,no elemento pai se usa 'align-items:', mas como usar isso em apenas um elementos filho? use o 'align-self: ;'
+
+
+
+
+CSS:
+
+.container{
+	display: flex;
+	align-items: flex-end;
+	background-color: darkgrey;
+	height: 400px;
+	color: white;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	align-self: flex-start;
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+
+	width: 150px;
+	height: 150px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID - INTRO
+
+display: grid;
+
+muita gente acha que o grid substitui o flex box, mas é super possivel e ate recomendado que vc utilize os dois no mesmo projeto, ou seja dentro de um elemmento que esta em um grid, voce pode ter um display: flex; assim como voce pode ter um container de uma grid dentro de um elemento que esta dentro de umm flex box, entao é super possivel fazer isso e o que vai determinar é o seu designer
+
+todo grid vai ser divido em linhas e colunas
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID - TEMPLATE
+
+
+HTML:
+
+<body>
+	<div class="container">
+		<div class="rect r1">1</div>
+		<div class="rect r2">2</div>
+		<div class="rect r3">3</div>
+		<div class="rect r4">4</div>
+		<div class="rect r5">5</div>
+		<div class="rect r6">6</div>
+	</div>
+</body>
+
+
+
+
+CSS:
+
+.container{
+	color: white;
+	display: grid;
+	padding: 10px;
+	background-color: gray;
+
+	//agora temos que definir a template da grid(linhas e colunas)
+	// grid-template-rows auto auto; //duas linhas
+	// grid-template-columns:  auto 10% auto; //tres colunas, pode por porcentagem ou px
+
+	// podemos usar unidade de medida propria da grid, fr = fração
+	grid-template-rows: 200px 100px;
+	grid-template-columns: 1fr 3fr 1fr;
+
+	// podemos por o template rows e tamplete columns em um so,use o grid-template:
+	grid-template: 200px 100px / 1fr 3fr 1fr; // linhas / colunas
+
+
+
+}
+
+.r1{
+	background-color: red;
+}
+.r2{
+	background-color: blue;
+}
+.r3{
+	background-color: green
+}
+
+.rect{
+	width: 100px;
+	height: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID - GAP
+
+todos os nossos elementos da grid estao muito colados, como dar umm espaçamento entre eles. vamos usar o, grid-row-gap:   grid-column-gap: 
+os dois juntos,use;  grid-gap:
+
+grid-row-gap: 10px; // gap entre linhas
+grid-column-gap: 10px //gap entre colunas
+
+se quisermos usar a mesma distante tanto na vertical quanto na orizontal, use o grid-gap;   grid-gap: 15px;
+
+
+CSS:
+
+.container{
+	color: white;
+	display: grid;
+	padding: 10px;
+	background-color: gray;
+
+	grid-template: 100px 100px / 1fr 2fr 1fr;
+
+	grid-gap: 15px
+
+}
+
+.r1 {..bla..bla..bla...
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID - JUSTIFY E ALIGN ITEMS
+
+justify-items pega todos os elementos que eestao dentro de uma coluna e modifica o posicionamento desse elemento em relacao a coluna
+
+justify-items: flex-end; //alinha os elementos no final de cada coluna
+justify-items: flex-start; //alinha os elementos no inicio de cada coluna
+justify-items: center; //alinha os elementos ao centro de cada coluna
+
+justify-items: stretch; //pega toda a coluna, usado quando nao definimos a largura do elemento
+
+
+align items faz a mesmo coisa que o justify-items SO QUE na vertical, ele faz o alihamento na vertical
+
+align-items: center; //centraliza o elemento em relacao ao meio da linha
+align-items: flex-end; //posicionamento ao final da nossa linha(colano na parte de baixo da linha)
+align-items: flex-start; //posicionamento ao inicio da nossa linha(colano no 'teto' ma parte de cima da linha)
+align-items: stretch; // estica para ter a altura de toda a linha
+
+
+CSS:
+
+.container{
+	height: 500px;
+	color: white;
+	display: grid;
+	padding: 10px;
+	background-color: gray;
+
+	grid-template: auto auto / auto auto auto;
+
+	justify-items: center;
+
+	align-items: center;
+
+	grid-gap: 10px;
+}
+
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.rect{
+	width: 100px;
+	height: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID - JUSTIFY E ALIGN CONTENT
+
+como ja vimos o justify-items e align-items vao alinhar os elementos em relacao ao espaco da grid, ou seja ele vai alinhar um elemento em relacao ao espaco que ele tem referente a linha e coluna
+
+Ja o justify-content e o align-content vao alinhar os espacos da grid em relacao ao container
+
+
+justify-content: flex-end; // pegou cada espaco da grid que antes estava esticado para ocupar todo o espaco do container e ele diminuiu cada pedaco da grid para ter so o tamanho nescessario para conter o nosso elemento, jogando-o para o canto direito do container
+
+
+justify-content: flex-start; // pegou cada espaco da grid que antes estava esticado para ocupar todo o espaco do container e ele diminuiu cada pedaco da grid para ter so o tamanho nescessario para conter o nosso elemento, jogando-o para o canto esquerdo do container
+
+
+justify-content: space-around; // cada grid esta com espaçamento igual 
+
+justify-content: space-between; // ter o espaco entre os elementos
+
+justify-content: space-evenly; // para manter o espaco igualmente divido entre cada um dos elementos
+
+
+
+
+PARA FAZER ISSO NA VERTICAL VAMOS USAR O align-content:
+é a mesma coisa do justify-content: ; so que na vertical
+
+align-content: flex-end; // pegou cada espaco da grid que antes estava esticado para ocupar todo o espaco do container e ele diminuiu cada pedaco da grid para ter so o tamanho nescessario para conter os nossos elementos, comprimindo a grid para baixo
+
+align-content: flex-start; // lembre se que o align-content vai comprimir as linhas para caber apenas o elemento da grid. o resto do container estara vazio, n tera mais a presenca do grid pq o gridd foi comprimido para a parte de cima
+
+align-content: space-around;
+
+align-content: space-between;
+
+align-content: space-evenly;
+
+
+
+-> NO CURSO TEMOS IMAGENS DE EXXEMPLOS INCRIVEIS PARA VOCES ENTENDEREM MELHOR
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID TEMPLATE AREA
+
+
+HTML:
+<div class="container">
+	<div class="rect r1 item1">1</div>
+	<div class="rect r2 item2">2</div>
+	<div class="rect r3 item3">3</div>
+	<div class="rect r1 item4">4</div>
+	<div class="rect r2 item5">5</div>
+	<div class="rect r3 item6">6</div>
+</div>
+
+
+
+CSS:
+.container{
+	color: white;
+	display: grid;
+	background-color: gray;
+
+	padding: 10px;
+
+	// cada linha significa linha e cada coluna significa coluna,voce literalmente mosta a grid encaixando ela como se fosse um lego
+	grid-template-areas:"a2 a2 a2 a2 a2 a2"
+						"a1 a1 a3 a3 a3 a3"
+						"a1 a1 a5 a4 a4 a4"
+						"a6 a6 a6 a6 a6 a6"
+
+}
+ 
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.item1{
+	grid-area: a1;
+}
+
+.item2{
+	grid-area: a2;
+}
+
+.item3{
+	grid-area: a3;
+}
+
+.item4{
+	grid-area: a4;
+}
+
+.item5{
+	grid-area: a5;
+}
+
+.item6{
+	grid-area: a6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+GRID COLUMN E ROW START E end
+
+vamos replicar as propriedades que ciramos com o grid-template-areas
+
+
+
+
+CSS:
+.container{
+	color: white;
+	display: grid;
+	background-color: gray;
+
+	padding: 10px;
+
+	grid-template: auto auto auto auto / auto auto auto auto auto auto;
+
+	
+
+}
+ 
+.r1{
+	background-color: red;
+}
+
+.r2{
+	background-color: blue;
+}
+
+.r3{
+	background-color: green;
+}
+
+.item1{
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 4;
+}
+
+.item2{
+
+	grid-column-start: 1;
+	grid-column-end: 7; // temos que por 7 pra ir ate o final da coluna 6
+	
+}
+
+.item3{
+	grid-column-end: span 4; // expandir 4 colunas
+}
+
+.item4{
+	grid-column-start: 4;
+	grid-column-end: 7;
+}
+
+.item5{
+	grid-row-start: 3;
+	grid-column-start: 3;
+}
+
+.item6{
+	grid-column-end: span 6; //podemos usar o span para expandir 6 colunas tmb podemos usar o start:1 e end:7 se quiser
+}
+
+
+
+
+
